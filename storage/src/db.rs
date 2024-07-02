@@ -7,7 +7,8 @@ pub type StoreKey = Vec<u8>;
 pub type KValue = (StoreKey, Vec<u8>);
 pub type KVEntry = (StoreKey, Option<Vec<u8>>);
 pub type KVBatch = Vec<KVEntry>;
-pub type DbIter<'a> = Box<dyn Iterator<Item = (Box<[u8]>, Box<[u8]>)> + 'a>;
+pub type DbIter<'a> =
+    Box<dyn Iterator<Item = std::result::Result<(Box<[u8]>, Box<[u8]>), rocksdb::Error>> + 'a>;
 
 #[derive(Debug)]
 pub enum IterOrder {

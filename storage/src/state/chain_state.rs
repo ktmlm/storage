@@ -258,7 +258,8 @@ impl<D: MerkleDB> ChainState<D> {
             let kv_pair = match db_iter.next() {
                 Some(result) => result,
                 None => break,
-            };
+            }
+            .unwrap();
 
             let entry = self.db.decode_kv(kv_pair);
             stop = func(entry);
@@ -276,7 +277,8 @@ impl<D: MerkleDB> ChainState<D> {
             let kv_pair = match db_iter.next() {
                 Some(result) => result,
                 None => break,
-            };
+            }
+            .unwrap();
 
             let entry = self.db.decode_kv(kv_pair);
             stop = func(entry);
@@ -303,7 +305,8 @@ impl<D: MerkleDB> ChainState<D> {
             let kv_pair = match db_iter.next() {
                 Some(result) => result,
                 None => break,
-            };
+            }
+            .unwrap();
 
             //AUX data doesn't need to be decoded
             let key = kv_pair.0;

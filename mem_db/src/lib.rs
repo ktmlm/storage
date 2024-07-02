@@ -94,12 +94,12 @@ impl MerkleDB for MemoryDB {
             IterOrder::Asc => Box::new(
                 self.inner
                     .range::<Box<[u8]>, _>((Included(&lower), Excluded(&upper)))
-                    .filter_map(|(k, v)| v.as_ref().map(|v| (k.clone(), v.clone()))),
+                    .filter_map(|(k, v)| v.as_ref().map(|v| Ok((k.clone(), v.clone())))),
             ),
             IterOrder::Desc => Box::new(
                 self.inner
                     .range::<Box<[u8]>, _>((Included(&lower), Excluded(&upper)))
-                    .filter_map(|(k, v)| v.as_ref().map(|v| (k.clone(), v.clone())))
+                    .filter_map(|(k, v)| v.as_ref().map(|v| Ok((k.clone(), v.clone()))))
                     .rev(),
             ),
         }
@@ -113,12 +113,12 @@ impl MerkleDB for MemoryDB {
             IterOrder::Asc => Box::new(
                 self.inner
                     .range::<Box<[u8]>, _>((Included(&lower), Excluded(&upper)))
-                    .filter_map(|(k, v)| v.as_ref().map(|v| (k.clone(), v.clone()))),
+                    .filter_map(|(k, v)| v.as_ref().map(|v| Ok((k.clone(), v.clone())))),
             ),
             IterOrder::Desc => Box::new(
                 self.inner
                     .range::<Box<[u8]>, _>((Included(&lower), Excluded(&upper)))
-                    .filter_map(|(k, v)| v.as_ref().map(|v| (k.clone(), v.clone())))
+                    .filter_map(|(k, v)| v.as_ref().map(|v| Ok((k.clone(), v.clone()))))
                     .rev(),
             ),
         }
@@ -132,12 +132,12 @@ impl MerkleDB for MemoryDB {
             IterOrder::Asc => Box::new(
                 self.aux
                     .range::<Box<[u8]>, _>((Included(&lower), Excluded(&upper)))
-                    .filter_map(|(k, v)| v.as_ref().map(|v| (k.clone(), v.clone()))),
+                    .filter_map(|(k, v)| v.as_ref().map(|v| Ok((k.clone(), v.clone())))),
             ),
             IterOrder::Desc => Box::new(
                 self.aux
                     .range::<Box<[u8]>, _>((Included(&lower), Excluded(&upper)))
-                    .filter_map(|(k, v)| v.as_ref().map(|v| (k.clone(), v.clone())))
+                    .filter_map(|(k, v)| v.as_ref().map(|v| Ok((k.clone(), v.clone()))))
                     .rev(),
             ),
         }

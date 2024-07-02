@@ -6,3 +6,6 @@ members = [
  "temp_db",
 ]
 resolver = "2"
+
+[patch."https://github.com/FindoraNetwork/fmerk.git"]
+fmerk = { git = "https://github.com/ktmlm/fmerk", branch = "master"}
